@@ -42,8 +42,8 @@ public class NetworkManager {
         return (float) totalCorrect / examples.length * 100;
     }
 
-    public static float trainToAccuracy(NeuralNetwork network, Example[] trainingExamples, Example[] testingExamples, int validationSplit, float desiredAccuracy, int epochCutoff, int debugEpoch) {
-        return trainToAccuracy(network, trainingExamples, testingExamples, validationSplit, desiredAccuracy, epochCutoff, debugEpoch, false);
+    public static float trainToAccuracy(NeuralNetwork network, Example[] trainingExamples, Example[] testingExamples, int validationSplit, float desiredAccuracy, int epochCutoff, int debugEpoch, boolean restartAtCutoff) {
+        return trainToAccuracy(network, trainingExamples, testingExamples, validationSplit, desiredAccuracy, epochCutoff, debugEpoch, false, restartAtCutoff);
     }
 
     public static float trainToAccuracy(NeuralNetwork network,
@@ -53,7 +53,8 @@ public class NetworkManager {
                                         float desiredAccuracy,
                                         int epochCutoff,
                                         int debugEpoch,
-                                        boolean shuffleExamples) {
+                                        boolean shuffleExamples,
+                                        boolean restartAtCutoff) {
         int epoch = 0;
         float accuracy = 0;
 
@@ -96,7 +97,7 @@ public class NetworkManager {
                 network.learningRate = Math.min((desiredAccuracy - accuracy) / accuracy * 5.0, 0.05);
             }
 
-            if (i == epochCutoff - 1) {
+            if (restartAtCutoff && i == epochCutoff - 1) {
                 float testingAccuracy = test(network, testingExamples);
                 System.out.println("Testing accuracy is: " + testingAccuracy + "% before restarting. \n");
                 network.initializeNeurons();
@@ -105,10 +106,9 @@ public class NetworkManager {
             }
         }
         float testingAccuracy = test(network, testingExamples);
-        System.out.println("Validation accuracy of " + accuracy + "% in " + epoch + " epochs");
-        System.out.println("Testing accuracy is: " + testingAccuracy + "%");
-        System.out.println("Training set accuracy is: " + test(network, trainingExamples) + "%");
+        float trainingAccuracy = test(network, trainingExamples);
 
+        System.out.println("Training finished. Epoch: " + epoch + ", Testing: " + testingAccuracy + ", Validation: " + accuracy + ", Training: " + trainingAccuracy);
         return accuracy;
     }
 

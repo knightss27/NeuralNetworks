@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="" />
+    <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test-1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-2d.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/NetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NetworkManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NetworkManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +39,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -93,10 +104,26 @@
       <workItem from="1644268059102" duration="3988000" />
       <workItem from="1644293138704" duration="4000" />
       <workItem from="1644293198585" duration="817000" />
+      <workItem from="1644297575352" duration="558000" />
+      <workItem from="1644298207338" duration="9497000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
