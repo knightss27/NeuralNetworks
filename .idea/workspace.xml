@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test-1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-2d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server-data2-parsed.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ExcelOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/NetworkTestingThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-100e-3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-100e-4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" afterDir="false" />
@@ -27,11 +30,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="23NWMnyH7vXfPvp6j5PemTeuQ4e" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -106,6 +118,12 @@
       <workItem from="1644293198585" duration="817000" />
       <workItem from="1644297575352" duration="558000" />
       <workItem from="1644298207338" duration="9497000" />
+      <workItem from="1644428863840" duration="5080000" />
+      <workItem from="1644435387061" duration="955000" />
+      <workItem from="1644445508082" duration="4699000" />
+      <workItem from="1644597263350" duration="2365000" />
+      <workItem from="1644873019933" duration="2958000" />
+      <workItem from="1645033708600" duration="4159000" />
     </task>
     <servers />
   </component>

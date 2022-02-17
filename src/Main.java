@@ -1,148 +1,107 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 public class Main {
 
-	final static Example[] handwrittenTraining = ExampleLoader.handwrittenDigitText("digits-train.txt");
-	final static Example[] handwrittenTesting = ExampleLoader.handwrittenDigitText("digits-test.txt");
-	final static ThreadWriter threadWriter = new ThreadWriter("test-2d");
+    final static Example[] XORexamples = new Example[]{new Example(new int[]{0, 0}, 0), new Example(new int[]{0, 1}, 1), new Example(new int[]{1, 0}, 1), new Example(new int[]{1, 1}, 0),};
+    final static Example[] ANDexamples = new Example[]{new Example(new int[]{0, 0}, 0), new Example(new int[]{0, 1}, 0), new Example(new int[]{1, 0}, 0), new Example(new int[]{1, 1}, 1),};
+
+    final static Example[] handwrittenTraining = ExampleLoader.handwrittenDigitText("digits-train.txt");
+    final static Example[] handwrittenTesting = ExampleLoader.handwrittenDigitText("digits-test.txt");
+
+    static void learnAND(double learningRate, boolean restartAtCutoff) {
+        NeuralNetwork network = new NeuralNetwork(2, 2, 2, learningRate);
+        NetworkManager.trainToAccuracy(network, ANDexamples, ANDexamples, 0, 99, 500, 10, restartAtCutoff);
+    }
+
+    static void learnXOR(double learningRate, boolean restartAtCutoff) {
+        NeuralNetwork network = new NeuralNetwork(2, 2, 2, learningRate);
+        NetworkManager.trainToAccuracy(network, XORexamples, XORexamples, 0, 99, 40000, 1000, restartAtCutoff);
+    }
+
+    static void learnAKDigits(int numHidden, double learningRate, double validationProportion, boolean restartAtCutoff) {
+        NeuralNetwork network = new NeuralNetwork(64, 10, numHidden, learningRate);
+        NetworkManager.trainToAccuracy(network, handwrittenTraining, handwrittenTesting, (int) (validationProportion * handwrittenTraining.length), 99.8F, 100, 20, restartAtCutoff);
+    }
+
+    static void learnMNIST(int numHidden, double learningRate, double validationProportion, boolean restartAtCutoff, boolean useGUI) {
+        Example[] mnistDataTrain = ExampleLoader.MNISTDigitSet("train-labels-idx1-ubyte", "train-images-idx3-ubyte");
+		Example[] mnistDataTest = ExampleLoader.MNISTDigitSet("t10k-labels-idx1-ubyte", "t10k-images-idx3-ubyte");
+
+        NeuralNetwork network = new NeuralNetwork(64, 10, numHidden, learningRate);
+        NetworkManager.trainToAccuracy(network, mnistDataTrain, mnistDataTest, (int) (validationProportion * handwrittenTraining.length), 99.8F, 200, 20, restartAtCutoff);
+
+        if (useGUI) {
+            new MNISTGui(network);
+        }
+    }
+
+    static void threadedLearn(int numThreads, int[] numHiddenBounds, int numHiddenStep, double[] learningRateBounds, double learningRateStep, Example[] trainingData, Example[] testingData, double validationProportion, ThreadWriter threadWriter) {
+        if ((numHiddenBounds[1] - numHiddenBounds[0]) % numThreads != 0) {
+            throw new RuntimeException("Number of hidden nodes to check is not evenly split by number of threads.");
+        }
+
+        int numHiddenMin = numHiddenBounds[0];
+        int numHiddenMax = numHiddenBounds[1];
+        int numHiddenIncreasesToRun = (numHiddenMax - numHiddenMin) / numThreads;
+        double learningRateMin = learningRateBounds[0];
+        double learningRateMax = learningRateBounds[1];
+        int numRateIncreasesToRun = (int) ((learningRateMax - learningRateMin) / learningRateStep);
+
+        // Each thread runs 1/4 the hidden neuron options, going through each of the learning rates
+        NeuralNetwork[][] networksToRun = new NeuralNetwork[numThreads][numHiddenIncreasesToRun * numRateIncreasesToRun];
+
+        for (int i = numHiddenMin; i < numHiddenMax; i += numThreads) {
+            for (int thread = 0; thread < numThreads; thread++) {
+                int numHidden = i + thread;
+                for (int rateInterval = 0; rateInterval < numRateIncreasesToRun; rateInterval++) {
+                    networksToRun[thread][numHiddenIncreasesToRun * numRateIncreasesToRun + rateInterval] = new NeuralNetwork(2, 2, numHidden, learningRateMin + learningRateStep * rateInterval);
+                }
+            }
+        }
+
+        System.out.println("Successfully generated " + numThreads + " threads with " + networksToRun[0].length + " networks each.");
+        System.out.println("Now attempting to initialize and run threads.");
+        System.out.println("Writing to file: " + threadWriter.fileName);
+
+        threadWriter.write("Epoch Cutoff,# Hidden,Learning Rate,10 Run Avg. Validation Accuracy,2 Run Avg. Testing Accuracy, Highest Testing Acc.,Highest Test Epoch,Highest Validation Acc.,Highest Validation Epoch\n");
+
+        CountDownLatch latch = new CountDownLatch(numThreads);
+        System.out.println("starting threads");
+        threadWriter.start();
+
+        for (int i = 0; i < networksToRun.length; i++) {
+            NetworkTestingThread thread = new NetworkTestingThread(i, networksToRun[i], trainingData, testingData, validationProportion, threadWriter, latch);
+            thread.start();
+        }
+
+        try {
+            latch.await();
+            threadWriter.interrupt();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
-	    Example[] ANDexamples = new Example[]{
-	      new Example(new int[]{0,0}, 0),
-	      new Example(new int[]{0,1}, 0),
-	      new Example(new int[]{1,0}, 0),
-	      new Example(new int[]{1,1}, 1),
-        };
 
-		Example[] XORexamples = new Example[]{
-				new Example(new int[]{0,0}, 0),
-				new Example(new int[]{0,1}, 1),
-				new Example(new int[]{1,0}, 1),
-				new Example(new int[]{1,1}, 0),
-		};
+        // Learn AND
+        learnAND(1.0, false);
 
-//		Example[] mnistDataTrain = ExampleLoader.MNISTDigitSet("train-labels-idx1-ubyte", "train-images-idx3-ubyte");
-//		Example[] mnistDataTest = ExampleLoader.MNISTDigitSet("t10k-labels-idx1-ubyte", "t10k-images-idx3-ubyte");
+        // Learn XOR
+        learnXOR(0.05, false);
 
-//		NeuralNetwork network = new NeuralNetwork(49, 10, 138, 0.05);
-//		NetworkManager.trainToAccuracy(network, mnistDataTrain, mnistDataTest, 3000, 95, 200, 10);
+        // Learn AK Digits
+        learnAKDigits(138, 0.03, 0.9, false);
 
-//		NetworkManager.writeNetworkToFile(network);
+        // Learn MNIST Digits
+        learnMNIST(138, 0.05, 0.9, false, false);
 
-//		System.out.println("Desired accuracy reached, launching GUI");
-//
-//		new MNISTGui(network);
+        // Learn MNIST with GUI
+        learnMNIST(138, 0.05, 0.9, false, true);
 
-//		NeuralNetwork network = new NeuralNetwork(2, 2, 2, 1.0);
-//	    NetworkManager.trainToAccuracy(network, ANDexamples, ANDexamples, 0, 99, 500, 10);
-
-//		NeuralNetwork network = new NeuralNetwork(2, 2, 2, 0.05);
-//		NetworkManager.trainToAccuracy(network, XORexamples, XORexamples, 0, 99, 100000, 1000);
-
-		// Step size should = (2-8) * (training iterations in epoch = 3823)
-
-//		NeuralNetwork network = new NeuralNetwork(64, 10, 138, 0.03);
-//		NetworkManager.trainToAccuracy(network, handwrittenTraining, handwrittenTesting, (int) (.9 * handwrittenTraining.length), 99.8F, 100, 20);
-
-//		NeuralNetwork network2 = new NeuralNetwork(64, 10, 138, 0.01);
-//		network2.useCyclicalLearning = true;
-//		NetworkManager.trainToAccuracy(network2, handwrittenTraining, handwrittenTesting, 97, 1000, 25, true);
-
-		int numThreads = 4;
-
-		int categoryMax = 150;
-		int categoryMin = 130;
-
-		double learningRateMin = 0.01;
-		double learningRateMax = 0.13;
-		double learningRateIncrease = 0.01;
-		int numIncreasesToRun = (int) ((learningRateMax-learningRateMin)/learningRateIncrease);
-
-		NeuralNetwork[][] networksToRun = new NeuralNetwork[numThreads][(categoryMax-categoryMin)/4];
-		NeuralNetwork[][] ratesToRun = new NeuralNetwork[numThreads][numIncreasesToRun/numThreads];
-
-//		for (int i = categoryMin; i < categoryMax; i += numThreads) {
-//			for (int j = i; j < i+4; j++) {
-//				networksToRun[j%4][(i-categoryMin)/4] = new NeuralNetwork(64, 10, j, 0.03);
-//			}
-//		}
-
-//		for (int i = 0; i < numIncreasesToRun; i += numThreads) {
-//			for (int j = i; j < i + numThreads; j++) {
-//				ratesToRun[j%4][i/4] = new NeuralNetwork(64, 10, 138, learningRateMin + j * learningRateIncrease);
-//			System.out.println((int) ((i-learningRateMin)/learningRateIncrease));
-//			}
-//		}
-
-		// Each thread runs 1/4 the hidden neuron options, going through each of the learning rates
-		NeuralNetwork[][] ratesVsNetworksToRun = new NeuralNetwork[numThreads][(categoryMax-categoryMin)/4 * (numIncreasesToRun)];
-
-
-		// for all the numbers of hidden neurons
-		// for each group of four
-		// for each one loop over all rates
-		// for each rate create a new neural network at index [thread][
-
-		for (int i = categoryMin; i < categoryMax; i += numThreads) {
-			for (int thread = 0; thread < numThreads; thread++) {
-				int currentRate = 0;
-				int numHidden = i + thread;
-				for (int rateInterval = 0; rateInterval < numIncreasesToRun; rateInterval++) {
-//					System.out.println("Thread: " + thread + ", numHidden: " + numHidden + ", rate: " + rateInterval + ", at: [" + thread + "][" + ((numHidden-categoryMin)/4 * numIncreasesToRun + rateInterval) + "]");
-					ratesVsNetworksToRun[thread][((numHidden - categoryMin) / 4 * numIncreasesToRun + rateInterval)] = new NeuralNetwork(64, 10, numHidden, learningRateMin + learningRateIncrease * rateInterval);
-				}
-			}
-		}
-
-		System.out.println("Successfully generated " + numThreads + " threads with " + ratesVsNetworksToRun[0].length + " networks each.");
-		System.out.println("Now attempting to initialize and run threads.");
-		System.out.println("Writing to file: " + threadWriter.fileName);
-
-		threadWriter.write("Epoch Cutoff,# Hidden,Learning Rate,Validation Accuracy,Testing Accuracy\n");
-
-		CountDownLatch latch = new CountDownLatch(4);
-		System.out.println("starting threads");
-		threadWriter.start();
-		for (int i = 0; i < ratesVsNetworksToRun.length; i++) {
-			TestingThread thread = new TestingThread(ratesVsNetworksToRun[i], i, latch);
-			thread.start();
-		}
-
-		try {
-			latch.await();
-			threadWriter.interrupt();
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-    static class TestingThread extends Thread {
-
-    	NeuralNetwork[] networks;
-    	int id;
-    	CountDownLatch latch;
-
-    	TestingThread(NeuralNetwork[] networks, int id, CountDownLatch latch) {
-    		this.networks = networks;
-    		this.id = id;
-    		this.latch = latch;
-		}
-
-    	@Override
-		public void run() {
-			for (int i = 0; i < networks.length; i++) {
-				NeuralNetwork network = networks[i];
-				System.out.println("testing: " + id + ": " + i + "/" + networks.length);
-				int epochCutoff = 100;
-				float acc = NetworkManager.trainToAccuracy(network, handwrittenTraining, handwrittenTesting, (int) (handwrittenTraining.length * .9), 99.9F, epochCutoff, 301, false);
-
-				threadWriter.write(epochCutoff + "," + network.numHidden + "," + network.learningRate + "," + acc + "," + NetworkManager.test(network, handwrittenTesting) + "\n");
-			}
-
-			latch.countDown();
-		}
-	}
+        // Multithreaded testing
+        ThreadWriter threadWriter = new ThreadWriter("test-100e-4");
+        threadedLearn(2, new int[]{2,202}, 1, new double[]{0.01, 1.01}, .02, handwrittenTraining, handwrittenTesting, 0.9, threadWriter);
+    }
 }

@@ -43,7 +43,11 @@ public class NetworkManager {
     }
 
     public static float trainToAccuracy(NeuralNetwork network, Example[] trainingExamples, Example[] testingExamples, int validationSplit, float desiredAccuracy, int epochCutoff, int debugEpoch, boolean restartAtCutoff) {
-        return trainToAccuracy(network, trainingExamples, testingExamples, validationSplit, desiredAccuracy, epochCutoff, debugEpoch, false, restartAtCutoff);
+        return trainToAccuracy(network, trainingExamples, testingExamples, validationSplit, desiredAccuracy, epochCutoff, debugEpoch, false, restartAtCutoff, new float[2][2]);
+    }
+
+    public static float trainToAccuracy(NeuralNetwork network, Example[] trainingExamples, Example[] testingExamples, int validationSplit, float desiredAccuracy, int epochCutoff, int debugEpoch, boolean restartAtCutoff, float[][] highestAccuracies) {
+        return trainToAccuracy(network, trainingExamples, testingExamples, validationSplit, desiredAccuracy, epochCutoff, debugEpoch, false, restartAtCutoff, highestAccuracies);
     }
 
     public static float trainToAccuracy(NeuralNetwork network,
@@ -54,7 +58,8 @@ public class NetworkManager {
                                         int epochCutoff,
                                         int debugEpoch,
                                         boolean shuffleExamples,
-                                        boolean restartAtCutoff) {
+                                        boolean restartAtCutoff,
+                                        float[][] highestAccuracies) {
         int epoch = 0;
         float accuracy = 0;
 
@@ -69,17 +74,25 @@ public class NetworkManager {
             actualValidation = Arrays.copyOfRange(trainingExamples, validationSplit, trainingExamples.length);
         }
 
-
         for (int i = 0; i < epochCutoff; i++) {
             train(network, actualTraining, shuffleExamples);
             accuracy = test(network, actualValidation);
+            float testingAccuracy = test(network, testingExamples);
             epoch++;
 
             if (epoch % debugEpoch == 0) {
                 System.out.println("Epoch " + epoch + ": done with validation accuracy " + accuracy + "%");
-
-                float testingAccuracy = test(network, testingExamples);
                 System.out.println("--------- testing accuracy is: " + testingAccuracy + "% ");
+            }
+
+            // Updates for the highest stuff
+            if (accuracy > highestAccuracies[0][0]) {
+                highestAccuracies[0][0] = accuracy;
+                highestAccuracies[0][1] = epoch;
+            }
+            if (testingAccuracy > highestAccuracies[1][0]) {
+                highestAccuracies[1][0] = accuracy;
+                highestAccuracies[1][1] = epoch;
             }
 
             if (accuracy > desiredAccuracy) {
@@ -90,15 +103,17 @@ public class NetworkManager {
 //                double cycle = Math.floor(1.0 + epoch/(2.0*network.stepSize));
 //                double x = Math.abs(((double) epoch)/network.stepSize - 2.0*cycle + 1.0);
 
-                // This equation describes a triangle that decreases by half its height each full cycle, hitting it's apex mid cycle.
+                // This equation describes a triangle that decreases by half its height each full cycle, hitting its apex mid-cycle.
                 // base_lr + (max_lr-base_lr)*np.maximum(0, (1-x))/float(2**(cycle-1))
-//                network.learningRate = network.learningRateMin + (network.learningRateMax - network.learningRateMin)*Math.max(0, (1.0-x))/Math.pow(2, cycle-1.0);
+                //network.learningRate = network.learningRateMin + (network.learningRateMax - network.learningRateMin)*Math.max(0, (1.0-x))/Math.pow(2, cycle-1.0);
 
                 network.learningRate = Math.min((desiredAccuracy - accuracy) / accuracy * 5.0, 0.05);
             }
 
+
+
             if (restartAtCutoff && i == epochCutoff - 1) {
-                float testingAccuracy = test(network, testingExamples);
+//                float testingAccuracy = test(network, testingExamples);
                 System.out.println("Testing accuracy is: " + testingAccuracy + "% before restarting. \n");
                 network.initializeNeurons();
                 i = 0;
