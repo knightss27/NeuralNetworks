@@ -1,3 +1,5 @@
+// Seth Knights
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -8,8 +10,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * Util class for cleaning data for Excel graphs
+ */
 public class ExcelOutput {
 
+    /**
+     * Generates a CSV file with the correct organization to be read as a 3D graph in Excel.
+     *
+     * @param inputFile the file as created by the ThreadWriter during multi-threaded testing
+     * @param outputFile the out put file for your csv
+     * @param numNodeIncreases the amount of node counts you tested
+     * @param numRateIncreases the amount of learning rates you tested
+     */
     public static void generateCSV(String inputFile, String outputFile, int numNodeIncreases, int numRateIncreases) {
         try {
             FileWriter writer = new FileWriter(outputFile);

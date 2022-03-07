@@ -1,3 +1,5 @@
+// Seth Knights
+
 public class Sensor extends Neuron {
     Sensor() {
         super(0);

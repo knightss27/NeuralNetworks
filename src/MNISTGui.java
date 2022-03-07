@@ -1,3 +1,5 @@
+// Andrew Merrill, edited slightly by Seth Knights
+
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;

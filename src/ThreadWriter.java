@@ -1,8 +1,8 @@
+// Seth Knights
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadWriter extends Thread {

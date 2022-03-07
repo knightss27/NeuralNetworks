@@ -1,10 +1,8 @@
+// Seth Knights
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class NetworkManager {
@@ -31,11 +29,10 @@ public class NetworkManager {
 
     public static float test(NeuralNetwork network, Example[] examples) {
         int totalCorrect = 0;
-        for (int i = 0; i < examples.length; i++) {
-            int category = network.classify(examples[i]);
-//            System.out.println("Classified example: " + i);
+        for (Example example : examples) {
+            int category = network.classify(example);
 
-            if (category == examples[i].category) {
+            if (category == example.category) {
                 totalCorrect++;
             }
         }
@@ -111,9 +108,7 @@ public class NetworkManager {
             }
 
 
-
             if (restartAtCutoff && i == epochCutoff - 1) {
-//                float testingAccuracy = test(network, testingExamples);
                 System.out.println("Testing accuracy is: " + testingAccuracy + "% before restarting. \n");
                 network.initializeNeurons();
                 i = 0;

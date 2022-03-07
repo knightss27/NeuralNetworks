@@ -1,3 +1,4 @@
+// Seth Knights
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -9,6 +10,11 @@ import java.util.List;
 
 public class ExampleLoader {
 
+    /**
+     * Loads AK Handwritten digits from their files, as given by the Canvas page.
+     * @param fileName where the data is stored
+     * @return {@link Example}[]
+     */
     public static Example[] handwrittenDigitText(String fileName) {
         try {
             Path filepath = FileSystems.getDefault().getPath(fileName);
@@ -33,6 +39,12 @@ public class ExampleLoader {
         return new Example[]{};
     }
 
+    /**
+     * Loads MNIST digit sets from their files, as given by the Canvas page.
+     * @param labelFileName where the data for labels is stored (binary)
+     * @param imageFileName where the data for images is stored (binary)
+     * @return {@link Example}[]
+     */
     public static Example[] MNISTDigitSet(String labelFileName, String imageFileName) {
         DataInputStream labelStream = openFile(labelFileName, 2049);
         DataInputStream imageStream = openFile(imageFileName, 2051);
@@ -69,6 +81,11 @@ public class ExampleLoader {
         return examples.toArray(new Example[]{});
     }
 
+    /**
+     * Chunks an MNIST image into pieces similar to the AK digits set.
+     * @param inputs pixel values as found in {@link MNISTGui}
+     * @return int[]
+     */
     static int[] MNISTChunkImage(double[] inputs) {
         int[] newChunkedInputs = new int[49];
         int currentChunk = 0;

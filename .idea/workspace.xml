@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server-data2-parsed.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ExcelOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NetworkTestingThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-100e-3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-100e-4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="2d, multithreaded testing works!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/NetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Example.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExampleLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExampleLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExcelOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExcelOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MNISTGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MNISTGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/NetworkManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NetworkManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NetworkTestingThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NetworkTestingThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NeuralNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Neuron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ThreadWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ThreadWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="copyright.profiles" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -78,6 +79,17 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -140,6 +152,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

@@ -1,3 +1,5 @@
+// Seth Knights
+
 import java.util.concurrent.CountDownLatch;
 
 public class NetworkTestingThread extends Thread {

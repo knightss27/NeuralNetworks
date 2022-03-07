@@ -1,6 +1,30 @@
+// Seth Knights
+
 import java.util.concurrent.CountDownLatch;
 
 public class Main {
+
+    public static void main(String[] args) {
+
+        // Learn AND
+        learnAND(1.0, false);
+
+        // Learn XOR
+        learnXOR(0.05, false);
+
+        // Learn AK Digits
+        learnAKDigits(138, 0.03, 0.9, false);
+
+        // Learn MNIST Digits
+        learnMNIST(138, 0.05, 0.9, false, false);
+
+        // Learn MNIST with GUI
+        learnMNIST(138, 0.05, 0.9, false, true);
+
+        // Multithreaded testing
+        ThreadWriter threadWriter = new ThreadWriter("test-100e-4");
+        threadedLearn(2, new int[]{2,202}, 1, new double[]{0.01, 1.01}, .02, handwrittenTraining, handwrittenTesting, 0.9, threadWriter);
+    }
 
     final static Example[] XORexamples = new Example[]{new Example(new int[]{0, 0}, 0), new Example(new int[]{0, 1}, 1), new Example(new int[]{1, 0}, 1), new Example(new int[]{1, 1}, 0),};
     final static Example[] ANDexamples = new Example[]{new Example(new int[]{0, 0}, 0), new Example(new int[]{0, 1}, 0), new Example(new int[]{1, 0}, 0), new Example(new int[]{1, 1}, 1),};
@@ -81,27 +105,5 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-
-        // Learn AND
-        learnAND(1.0, false);
-
-        // Learn XOR
-        learnXOR(0.05, false);
-
-        // Learn AK Digits
-        learnAKDigits(138, 0.03, 0.9, false);
-
-        // Learn MNIST Digits
-        learnMNIST(138, 0.05, 0.9, false, false);
-
-        // Learn MNIST with GUI
-        learnMNIST(138, 0.05, 0.9, false, true);
-
-        // Multithreaded testing
-        ThreadWriter threadWriter = new ThreadWriter("test-100e-4");
-        threadedLearn(2, new int[]{2,202}, 1, new double[]{0.01, 1.01}, .02, handwrittenTraining, handwrittenTesting, 0.9, threadWriter);
     }
 }

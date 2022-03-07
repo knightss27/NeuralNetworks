@@ -1,4 +1,4 @@
-import java.util.Arrays;
+// Seth Knights
 
 public class Neuron {
 

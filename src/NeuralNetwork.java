@@ -1,9 +1,11 @@
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
+// Seth Knights
+
+//    import java.io.IOException;
+//    import java.nio.file.FileSystems;
+//    import java.nio.file.Files;
+//    import java.nio.file.Path;
+//    import java.util.Arrays;
+//    import java.util.List;
 
 public class NeuralNetwork {
 
@@ -17,6 +19,7 @@ public class NeuralNetwork {
     Neuron[] hiddenLayer;
     Neuron[] answerLayer;
 
+//    UNFINISHED:
 //    NeuralNetwork(String filename) {
 //        try {
 //            Path filepath = FileSystems.getDefault().getPath(fileName);
@@ -140,7 +143,6 @@ public class NeuralNetwork {
         for (int i = 0; i < answerLayer.length; i++) {
             double correctAnswer = i == example.category ? 1.0 : 0.0;
             answerLayerErrors[i] = (correctAnswer - answerLayer[i].output) * answerLayer[i].output * (1.0 - answerLayer[i].output);
-//            System.out.println("Output amount: " + answerLayer[i].output);
         }
 
         double[] hiddenLayerErrors = new double[hiddenLayer.length];
