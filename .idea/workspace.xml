@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="Clean up for turn in.">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neural-network-output.png" afterDir="false" />
+    <list default="true" id="16811e79-7498-4b03-bae2-d13cbfe79747" name="Default Changelist" comment="Add writeup.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingA_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingA_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingA_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingA_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingA_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingA_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingA_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingA_3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingB_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingB_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingB_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingB_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingB_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingB_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testingB_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testingB_3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testing_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testing_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testing_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testing_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testing_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testing_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nn_testing_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/nn_testing_3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Example.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Example.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/ExampleLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/ExampleLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$ClassifyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$ClassifyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$ClearListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$ClearListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$LearnListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$LearnListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$PaintCanvas$Scribbler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$PaintCanvas$Scribbler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$PaintCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui$PaintCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/MNISTGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main$TestingThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/NetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/NeuralNetwork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/NeuralNetworks/Sensor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/NeuralNetworks/Sensor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-data-parsed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/server-data-parsed.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-data2-parsed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/server-data2-parsed.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-100e-1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-100e-1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-100e-2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-100e-2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-100e-3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-100e-3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-100e-4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-100e-4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-2d-new.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-2d-new.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-2d-new2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-2d-new2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-2d.txt" beforeDir="false" afterPath="$PROJECT_DIR$/old_test_results/test-2d.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +96,7 @@
       <recent name="C:\Users\knightss\IdeaProjects\NeuralNetworks\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="Z:\comp\NeuralNetworks\old_test_results" />
       <recent name="Z:\comp\NeuralNetworks" />
       <recent name="C:\Users\knightss\IdeaProjects\NeuralNetworks" />
     </key>
@@ -137,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646624824790</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add writeup.">
+      <created>1646626690750</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646626690750</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +201,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Clean up for turn in." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up for turn in." />
+    <MESSAGE value="Add writeup." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add writeup." />
   </component>
 </project>
