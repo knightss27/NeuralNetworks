@@ -1,11 +1,7 @@
 # Neural Networks Project - Seth Knights
 
----
-An implementation of a single hidden-layer neural network in Java, as assigned in my Computer Science III class.
-
+An from-scratch implementation of a single hidden-layer neural network in Java.
 ## Writeup:
-
----
 
 As written, my code has been successfully tested on four main data sets:
 - AND functions
